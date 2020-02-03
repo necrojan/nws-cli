@@ -1,0 +1,19 @@
+{
+  "name": "nws-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Jan Arambulo",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0",
+    "terminal-link": "^2.1.1"
+  },
+  "bin": {
+    "nws": "./src/index.js"
+  }
+}
