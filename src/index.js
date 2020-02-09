@@ -14,7 +14,12 @@ program
     "Language, default to English - en",
     "en"
   )
+  .option(
+    "-c, --count [count]",
+    " Count of items to return",
+    "1000"
+  )
   .description("see the latest news.")
-  .action(options => latestNews(options.language));
+  .action(options => latestNews(options.language, options.count));
 
 program.parse(process.argv);

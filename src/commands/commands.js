@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 const chalk = require("chalk");
+const terminaLink = require("terminal-link");
 
 require("dotenv").config();
 
@@ -22,7 +23,7 @@ const languages = {
   Spanish: "es"
 };
 
-const latestNews = async language => {
+const latestNews = async (language, count) => {
   const getKeyByValue = lang => {
     return Object.keys(languages).find(key => languages[key] == lang);
   };
@@ -50,8 +51,25 @@ const latestNews = async language => {
       "------------------------- Latest News -----------------------------"
     )
   );
-  console.log(chalk.yellow(`Language is in ${getKeyByValue(language)}`));
-  console.log(data);
+      console.log('\n');
+  console.log(chalk.yellow(`Language is in ${getKeyByValue(language)}\n`));
+
+  const filteredData = data.news.slice(0, Number(count)).map((obj, idx) => {
+    return {
+      id: idx + 1,
+      title: obj.title,
+      description: obj.description,
+      url: obj.url,
+      author: obj.author
+    };
+  });
+
+  filteredData.forEach(ele => {
+    console.log(ele.id, terminaLink(ele.title, ele.url));
+    console.log("By: ", ele.author);
+    console.log(ele.description);
+    console.log('\n');
+  });
 };
 
 module.exports = {
